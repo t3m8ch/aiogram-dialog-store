@@ -1,5 +1,4 @@
 import asyncio
-import os
 
 import pytest
 import pytest_asyncio
@@ -11,6 +10,7 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from app.core.models import Base
+from app.init.config import UnitTestsConfig
 
 load_dotenv(".testing.env")
 
@@ -22,15 +22,14 @@ def event_loop():
     loop.close()
 
 
-@pytest_asyncio.fixture(scope="session")
-async def db_engine():
-    if "DB_URL" not in os.environ:
-        skip_reason_message = (
-            f"Environment var with name 'DB_URL' is not provided."
-        )
-        pytest.skip(msg=skip_reason_message)
+@pytest.fixture(scope="session")
+def config() -> UnitTestsConfig:
+    return UnitTestsConfig.from_toml()
 
-    engine = create_async_engine(os.environ["DB_URL"])
+
+@pytest_asyncio.fixture(scope="session")
+async def db_engine(config: UnitTestsConfig):
+    engine = create_async_engine(config.db.url)
 
     try:
         yield engine
