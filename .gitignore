@@ -1,3 +1,5 @@
+config.app.toml
+config.tests.toml
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm+all,visualstudiocode,vim,emacs,windows,macos,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm+all,visualstudiocode,vim,emacs,windows,macos,linux
