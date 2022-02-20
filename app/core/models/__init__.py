@@ -1,5 +1,5 @@
-__all__ = ["Base", "ModelCommonMixin", "Product", "Category"]
+__all__ = ["Base", "ModelCommonMixin", "Product", "ProductCategory"]
 
 from .base import ModelCommonMixin, Base
-from .category import Category
+from .product_category import ProductCategory
 from .product import Product

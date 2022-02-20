@@ -4,7 +4,7 @@ import sqlalchemy as sa
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core import exceptions
-from app.core.models import Product, Category
+from app.core.models import Product, ProductCategory
 
 
 class ProductsServiceImpl:
@@ -21,5 +21,5 @@ class ProductsServiceImpl:
 
     async def _category_is_exists(self, category_id: uuid.UUID):
         return await self._session.scalar(
-            sa.select(sa.func.count()).where(Category.id == category_id)
+            sa.select(sa.func.count()).where(ProductCategory.id == category_id)
         ) > 0

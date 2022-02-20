@@ -16,6 +16,8 @@ class Product(ModelCommonMixin, Base):
     photo_file_id = sa.Column(sa.String(length=100), nullable=True)
 
     category_id = sa.Column(
-        psql.UUID(as_uuid=True), sa.ForeignKey("category.id"), nullable=False
+        psql.UUID(as_uuid=True),
+        sa.ForeignKey("product_category.id"),
+        nullable=False
     )
-    category = relationship("Category", back_populates="products")
+    category = relationship("ProductCategory", back_populates="products")

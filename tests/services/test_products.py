@@ -16,7 +16,7 @@ async def test_get_by_category_id(db_session: AsyncSession):
     ids = [uuid.uuid4() for _ in range(5)]
 
     categories = [
-        models.Category(
+        models.ProductCategory(
             id=smartphones_category_id,
             name="Smartphones",
             products=[
@@ -35,7 +35,7 @@ async def test_get_by_category_id(db_session: AsyncSession):
                 ),
             ]
         ),
-        models.Category(
+        models.ProductCategory(
             id=gpu_category_id,
             name="GPU",
             products=[
@@ -84,7 +84,7 @@ async def test_get_by_category_id_if_category_is_not_exists(
     actual_category_id = uuid.uuid4()
 
     categories = [
-        models.Category(
+        models.ProductCategory(
             id=actual_category_id,
             name="Smartphones",
             products=[
@@ -124,7 +124,7 @@ async def test_get_by_category_id_if_there_are_no_products_in_category(
     category_id = uuid.uuid4()
 
     categories = [
-        models.Category(
+        models.ProductCategory(
             id=category_id,
             name="Smartphones",
             products=[]

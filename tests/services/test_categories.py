@@ -13,7 +13,7 @@ async def test_get_all(db_session: AsyncSession):
     categories_names = ["Smartphones", "Laptops", "Watch", "Headphones"]
 
     categories = [
-        models.Category(
+        models.ProductCategory(
             id=id_,
             name=name,
         )
