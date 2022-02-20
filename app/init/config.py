@@ -28,6 +28,11 @@ class UnitTestsConfig:
     db: DBConfig
 
 
+@dataclass(frozen=True, slots=True)
+class DBScriptsConfig:
+    db: DBConfig
+
+
 def load_config(type_=AppConfig, path: str = None):
     default_paths: dict[Any, str] = {
         UnitTestsConfig: "config.tests.toml",
