@@ -74,7 +74,8 @@ flycheck_*.el
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -305,6 +306,7 @@ celerybeat.pid
 
 # Environments
 .env
+.testing.env
 .venv
 env/
 venv/
