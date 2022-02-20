@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Any
 
 import dataclass_factory
 import tomli
@@ -21,20 +22,21 @@ class AppConfig:
     tgbot: TgBotConfig
     db: DBConfig
 
-    @classmethod
-    def from_toml(cls, path: str = "config.app.toml") -> "AppConfig":
-        toml_dict = _load_toml(path)
-        return dataclass_factory.load(toml_dict, cls)
-
 
 @dataclass(frozen=True, slots=True)
 class UnitTestsConfig:
     db: DBConfig
 
-    @classmethod
-    def from_toml(cls, path: str = "config.tests.toml") -> "UnitTestsConfig":
-        toml_dict = _load_toml(path)
-        return dataclass_factory.load(toml_dict, cls)
+
+def load_config(type_=AppConfig, path: str = None):
+    default_paths: dict[Any, str] = {
+        UnitTestsConfig: "config.tests.toml",
+    }
+    if path is None:
+        path = default_paths.get(type_) or "config.app.toml"
+
+    toml_dict = _load_toml(path)
+    return dataclass_factory.load(toml_dict, type_)
 
 
 def _load_toml(path: str) -> dict:

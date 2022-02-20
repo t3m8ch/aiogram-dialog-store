@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from app.core.models import Base
-from app.init.config import UnitTestsConfig
+from app.init.config import UnitTestsConfig, load_config
 
 
 @pytest.fixture(scope="session")
@@ -21,7 +21,7 @@ def event_loop():
 
 @pytest.fixture(scope="session")
 def config() -> UnitTestsConfig:
-    return UnitTestsConfig.from_toml()
+    return load_config(UnitTestsConfig)
 
 
 @pytest_asyncio.fixture(scope="session")
